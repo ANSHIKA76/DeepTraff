@@ -1,0 +1,58 @@
+# ---------------------------
+# Python cache & build files
+# ---------------------------
+__pycache__/
+*.pyc
+myenv/
+
+# ---------------------------
+# Environment / Secrets
+# ---------------------------
+.env
+*.env
+
+# ---------------------------
+# FastAPI / Uvicorn
+# ---------------------------
+*.db-journal
+
+# ---------------------------
+# VS Code / Editor files
+# ---------------------------
+.vscode/
+.idea/
+*.code-workspace
+
+# ---------------------------
+# Project folders to ignore
+# ---------------------------
+uploads/
+outputs/
+jobs/
+
+# Job data or temp files
+*.mp4
+*.json
+
+# ---------------------------
+# Model files (YOLO, OpenVINO)
+# ---------------------------
+*.pt
+*.bin
+*.xml
+best6_openvino_model640/
+
+# ---------------------------
+# Node artifacts (if frontend inside)
+# ---------------------------
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# ---------------------------
+# OS / System files
+# ---------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
