@@ -155,6 +155,27 @@ npm run dev
 ```bash
 http://localhost:5173
 ```
-# 🖼️ Screenshots (Frontend Output)
+# 📸 UI Screenshots
+
+### 🏠 Home Page
+![Home Page](images/Home%20page.png)
+
+### 🔐 Login Page
+![Login Page](images/Login%20Page.png)
+
+### 📝 Signup Page
+![Signup Page](images/SignUp%20page.png)
+
+### 📁 Data Input Page
+![Data Input](images/Data%20Input%20Page.png)
+
+### 🎥 Video Processing Page
+![Video Processing](images/Video%20processing.png)
+
+### 📊 Traffic Analyze Dashboard
+![Traffic Analyze](images/Traffic%20Analyze.png)
+
+</details>
+
 
 
