@@ -1,0 +1,17 @@
+ultralytics
+cvzone
+deep-sort-realtime
+pillow
+scipy
+opencv-python
+fastapi
+uvicorn
+python-multipart
+ffmpeg-python
+motor
+python-dotenv
+matplotlib
+numpy
+torch
+pydantic
+starlette
