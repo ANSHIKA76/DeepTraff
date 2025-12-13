@@ -19,6 +19,7 @@ This project includes:
 
 ## 📂 Project Structure
 
+```bash
 Deeptarff/
 │
 ├── backend/ # FastAPI + YOLO processing + MongoDB auth
@@ -39,7 +40,7 @@ Deeptarff/
 │
 └── README.md
 
-
+```
 
 ---
 
@@ -99,32 +100,61 @@ Built using:
 ```bash
 git clone https://github.com/abhi956837/Deeptarff.git
 cd Deeptarff
+```
 
-# 1️⃣ Go to backend folder
+1️⃣ Go to backend folder
+```bash
 cd backend
-
-# 2️⃣ Create virtual environment
+```
+2️⃣ Create virtual environment
+```bash
 python -m venv myenv
-
-# 3️⃣ Activate virtual environment (Windows)
+```
+3️⃣ Activate virtual environment (Windows)
+```bash
 myenv\Scripts\activate
+```
 
-# 4️⃣ Install backend dependencies
+4️⃣ Install backend dependencies
+```bash
 pip install -r requirements.txt
-
-# 5️⃣ Create .env file inside backend/
-# (Copy and paste the following into backend/.env)
-
-# -----------------------------
-# .env FILE CONTENT
-# -----------------------------
+```
+5️⃣ Create .env file inside backend/
+```txt
 MONGODB_URI=your-mongo-uri
 SECRET_KEY=your-secret-key
 DEBUG=true
 
 EMAIL_SENDER=your-email@gmail.com
 EMAIL_APP_PASSWORD=your-app-password
-# -----------------------------
-
-# 6️⃣ Run FastAPI backend
+```
+6️⃣ Run FastAPI backend
+```bash
 uvicorn app:app --host 0.0.0.0 --port 3000 --reload
+```
+7️⃣ backend runs at
+```bash
+http://localhost:3000
+```
+
+# 🎨 Frontend Installation (React + Vite)
+
+1️⃣ Go to frontend folder
+```bash
+cd deeptraf
+```
+2️⃣ Install dependencies
+```bash
+npm install
+```
+3️⃣ Start development server
+```bash
+npm run dev
+```
+4️⃣ frontend runs at
+```bash
+http://localhost:5173
+```
+# 🖼️ Screenshots (Frontend Output)
+
+
