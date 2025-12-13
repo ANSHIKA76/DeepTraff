@@ -10,6 +10,10 @@ myenv/
 # ---------------------------
 .env
 *.env
+kernel.errors.txt
+*.errors.txt
+*.log
+
 
 # ---------------------------
 # FastAPI / Uvicorn
