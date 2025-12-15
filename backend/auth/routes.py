@@ -21,20 +21,16 @@ from auth.utils import (
 )
 
 from email_service import send_otp_email
+from settings import settings   # <-- Load from .env
 
 # ================================================================
-# 🔗 MONGODB CONNECTION
+# 🔗 MONGODB CONNECTION (from .env)
 # ================================================================
-MONGO_URL = (
-    "mongodb+srv://abhi9568:%40%21Asdf9568@deeptraffcluster.atghih4.mongodb.net/"
-    "?retryWrites=true&w=majority&appName=DeepTraffCluster"
-)
-
-client = AsyncIOMotorClient(MONGO_URL)
+client = AsyncIOMotorClient(settings.mongodb_uri)
 db = client["vehicle_app"]
 users = db["users"]
 
-auth_router = APIRouter(prefix="/auth", tags=["Auth"])
+auth_router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 
 # ================================================================
@@ -54,12 +50,11 @@ async def signup(data: UserCreate):
         "password": hash_password(data.password),
         "verified": False,
         "otp": otp,
-        "otp_expire": time.time() + 300,
+        "otp_expire": time.time() + 300,  # 5 minutes
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow(),
     })
 
-    # SEND OTP TO EMAIL
     send_otp_email(data.email, otp)
 
     return {"status": "otp_sent", "message": "OTP sent to email"}
@@ -85,11 +80,11 @@ async def verify_otp(data: VerifyOTP):
         {"$set": {"verified": True}, "$unset": {"otp": "", "otp_expire": ""}}
     )
 
-    return {"status": "success", "message": "Account verified"}
+    return {"status": "success", "message": "Account verified successfully"}
 
 
 # ================================================================
-# 🔑 LOGIN
+# 🔑 LOGIN (FORM DATA FOR FASTAPI DOCS)
 # ================================================================
 @auth_router.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
@@ -103,7 +98,7 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     if not verify_password(password, user["password"]):
         raise HTTPException(400, "Wrong password")
 
-    if not user.get("verified"):
+    if not user.get("verified", False):
         raise HTTPException(401, "Account not verified")
 
     token = create_jwt({"sub": str(user["_id"])})
@@ -127,25 +122,24 @@ async def login_json(data: UserLogin):
     if not verify_password(data.password, user["password"]):
         raise HTTPException(400, "Wrong password")
 
-    if not user.get("verified"):
+    if not user.get("verified", False):
         raise HTTPException(401, "Account not verified")
 
     token = create_jwt({"sub": str(user["_id"])})
 
     return {
-    "status": "success",
-    "access_token": token,
-    "token_type": "bearer",
-    "user": {
-        "name": user["name"],
-        "email": user["email"]
+        "status": "success",
+        "access_token": token,
+        "token_type": "bearer",
+        "user": {
+            "name": user["name"],
+            "email": user["email"]
+        }
     }
-}
-
 
 
 # ================================================================
-# 🔁 FORGOT PASSWORD — SEND OTP
+# 🔁 FORGOT PASSWORD — GENERATE OTP
 # ================================================================
 @auth_router.post("/forgotPassword")
 async def forgot_password(data: ForgotPassword):
@@ -174,7 +168,7 @@ async def reset_password(data: ResetPassword):
     if not user:
         raise HTTPException(404, "User not found")
 
-    if data.otp != user.get("otp"):
+    if user.get("otp") != data.otp:
         raise HTTPException(400, "Invalid OTP")
 
     if time.time() > user.get("otp_expire", 0):
