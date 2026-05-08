@@ -1,4 +1,4 @@
-# 🚦 DeepTraff – AI-Powered Traffic Analysis System
+# 🚦 DeepTraff:AI-Powered Traffic Analysis System
 
 DeepTraff is a full-stack intelligent traffic monitoring system that processes road videos using YOLO object detection + DeepSORT tracking to generate:
 
@@ -7,7 +7,7 @@ DeepTraff is a full-stack intelligent traffic monitoring system that processes r
 - Class-wise statistics (2-wheelers, 3-wheelers, 4-wheelers)
 - JSON analytics report
 - Automatic chart generation  
-- Beautiful frontend UI for visualization
+- Frontend UI for visualization
 
 This project includes:
 
